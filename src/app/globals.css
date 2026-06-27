@@ -1,0 +1,187 @@
+@import "tailwindcss";
+
+/* ============================================================
+   Бренд «Трогательно» — кремовый фон, navy-текст, золотой акцент.
+   ============================================================ */
+:root {
+  --cream: #f4eee5;
+  --cream-2: #fbf7f1;
+  --ink: #2a2f50;
+  --ink-soft: #74778c;
+  --gold: #be894b;
+  --gold-soft: #d8b888;
+  --line: #e4d9c9;
+  --white: #ffffff;
+}
+
+@theme inline {
+  --color-cream: var(--cream);
+  --color-cream-2: var(--cream-2);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-gold: var(--gold);
+  --color-gold-soft: var(--gold-soft);
+  --color-line: var(--line);
+  --font-sans: var(--font-sans);
+  --font-display: var(--font-display);
+}
+
+* {
+  border-color: var(--line);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--cream);
+  color: var(--ink);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--gold);
+  color: #fff;
+}
+
+:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ---- Scroll reveal с вариантами ---- */
+:root {
+  --ease-lux: cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal {
+  opacity: 0;
+  transition:
+    opacity 0.9s var(--ease-lux),
+    transform 0.9s var(--ease-lux),
+    filter 0.9s var(--ease-lux);
+  will-change: opacity, transform;
+}
+.reveal.v-up {
+  transform: translateY(28px);
+}
+.reveal.v-blur {
+  transform: translateY(22px);
+  filter: blur(12px);
+}
+.reveal.v-left {
+  transform: translateX(-40px);
+}
+.reveal.v-right {
+  transform: translateX(40px);
+}
+.reveal.v-scale {
+  transform: scale(0.94);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+  filter: none;
+}
+
+/* ---- Пословное появление (заголовок hero) ---- */
+.word-reveal span.w {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  padding-bottom: 0.12em;
+}
+.word-reveal span.w > span {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(105%);
+  filter: blur(8px);
+  transition:
+    opacity 0.85s var(--ease-lux),
+    transform 0.85s var(--ease-lux),
+    filter 0.85s var(--ease-lux);
+}
+.word-reveal.is-visible span.w > span {
+  opacity: 1;
+  transform: none;
+  filter: none;
+}
+
+/* ---- Мягкое парение (логотип, фоновые пятна) ---- */
+@keyframes float-soft {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+.float-soft {
+  animation: float-soft 7s ease-in-out infinite;
+}
+
+/* ---- Дымчатые фоновые пятна для глубины ---- */
+.ambient {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(70px);
+  opacity: 0.5;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ---- Прорисовка линии (подчёркивание лейбла) ---- */
+.draw-line {
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.9s var(--ease-lux);
+}
+.reveal.is-visible .draw-line,
+.draw-line.is-visible {
+  transform: scaleX(1);
+}
+
+.animate-fade-in {
+  animation: fade-in 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    transition: none;
+  }
+  .word-reveal span.w > span {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    transition: none;
+  }
+  .float-soft {
+    animation: none;
+  }
+  .draw-line {
+    transform: none;
+    transition: none;
+  }
+  .animate-fade-in {
+    animation: none;
+  }
+}
