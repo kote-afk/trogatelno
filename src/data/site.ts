@@ -14,8 +14,8 @@ export const site = {
   max: "https://max.ru/u/f9LHodD0cOKtgoD2EufQRY4boK54j-pBOvcJY18fkujXUhgUqRCizh3_c1I",
   instagram: "https://www.instagram.com/trogatelno_nsk",
   vk: "https://vk.com/trogatelno_nsk",
-  // Ссылка на онлайн-запись (YClients и т.п.) — добавим, когда заказчик пришлёт.
-  bookingUrl: "", // TODO
+  // Онлайн-запись — по телефону (отдельной системы записи нет).
+  bookingUrl: "tel:+79293031999",
 
   // Карточки организации на картах — для виджета отзывов и ссылок.
   // rating/count — снимок для бейджей; сами ссылки всегда ведут на живые отзывы.
